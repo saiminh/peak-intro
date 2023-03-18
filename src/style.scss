@@ -1,0 +1,142 @@
+@mixin mobile-only {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @media (min-width: 640.1px) {
+    @content;
+  }
+}
+@mixin with-fine-pointer {
+  @media (pointer: fine) {
+    @content;
+  }
+}
+ .wp-site-blocks header,
+ .wp-site-blocks footer,
+ .wp-site-blocks main .wp-block-post-content > :not(.peak-intro, .peak-intro *)  {
+  opacity: 0;
+  animation: body-in 1s 2s ease-in-out both;
+  
+  body.skip-anim & {
+    animation-delay: 0s;
+    animation-duration: 0s;
+  }
+ }
+
+.peak-intro {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--wp--preset--color--contrast, #000);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: intro-out 1s 2s ease-in-out both;
+  
+  body.skip-anim & {
+    animation-delay: 0s;
+    animation-duration: 0s;
+  }
+
+  &::after, &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--wp--preset--color--contrast, #000);
+    width: 133vw;
+    height: 133vw;
+    border-radius: 50%;
+    z-index: 0;
+
+    @include mobile-only {
+      width: 133svh;
+      height: 133svh;
+    }
+  }
+  &::before {
+    background-color: #FFF;
+    animation: circle-zoom-in .5s ease-in-out both;
+    
+    body.skip-anim & {
+      animation-delay: 0s;
+      animation-duration: 0s;
+    }
+  }
+  &::after {
+    animation: circle-zoom-in .5s .25s ease-in-out both;
+    
+    body.skip-anim & {
+      animation-delay: 0s;
+      animation-duration: 0s;
+    }
+  }
+}
+.peak-intro-logo-svg {
+  position: absolute;
+  --color-coin: #fff;
+  --color-coin-inv: #000;
+  width: 75svh;
+  height: 75svh;
+  z-index: 4;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  transform: translateZ(1px);
+  animation: logo-in 1.5s .5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  @include mobile-only {
+    width: 75vw;
+    height: 75vw;
+  }
+
+  body.skip-anim & {
+    animation-delay: 0s;
+    animation-duration: 0s;
+  }
+}
+
+@keyframes circle-zoom-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }  
+}
+@keyframes logo-in {
+  0% {
+    transform: scale(0) rotate(0deg) translateZ(1px);
+  }
+  55% {
+    transform: scale(1) rotate(0deg) translateZ(1px);
+  }
+  100% {
+    transform: scale(1) rotate(360deg) translateZ(1px);
+  }
+}
+@keyframes intro-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes body-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -1,0 +1,1 @@
+window.addEventListener("DOMContentLoaded",(function(){this.sessionStorage.getItem("hasPlayed")?this.document.body.classList.add("skip-anim"):this.sessionStorage.setItem("hasPlayed",!0)}));

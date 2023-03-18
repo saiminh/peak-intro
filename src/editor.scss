@@ -1,0 +1,36 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+
+ .wp-site-blocks header,
+ .wp-site-blocks footer,
+ .wp-site-blocks main .wp-block-post-content :not(.peak-intro, .peak-intro *)  {
+  opacity: 1;
+ }
+
+.peak-intro,
+.peak-intro * {
+  position: inherit;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: transparent;
+  z-index: 1;
+  opacity: 1;
+}
+
+.peak-intro-editor {
+  background-color: var(--wp--preset--color--contrast, #000);
+  color: var(--wp--preset--color--base, #FFF);
+  padding: 2em;
+  margin: 1em auto;
+  max-width: 600px!important;
+  --color-coin: #fff;
+  --color-coin-inv: #000;
+
+  & .peak-intro-header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
